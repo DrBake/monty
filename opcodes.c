@@ -43,10 +43,8 @@ void push(stack_t **stack, unsigned int line_number, char *argument)
  * pall - Prints all the values on the stack, starting from the top.
  * @stack: Double pointer to the top of the stack.
  * @line_number: Line number where the opcode is located.
- *
- * Description: If the stack is not empty, this function prints all its
- * values to stdout. If the stack is empty, nothing is printed.
  */
+
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
@@ -58,4 +56,23 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", current->n);
 		current = current->next;
 	}
+}
+
+/**
+ * pint - prints the value at the top of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number where the opcode is located.
+ */
+
+void pint(stack_t **stack, unsigned int line_number)
+{
+	/* Check if the stack is empty */
+	if (!*stack)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	/* Print the value at the top of the stack */
+	printf("%d\n", (*stack)->n);
 }
