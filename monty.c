@@ -1,29 +1,43 @@
 #include "monty.h"
 
 /**
- * main - Entry point for the Monty interpreter.
- * @argc: Argument count.
- * @argv: Argument vector.
- * Return: EXIT_SUCCESS on success, EXIT_FAILURE on errors.
- */
-int main(int argc, char **argv)
+* main - monty code interpreter
+* @argc: number of arguments
+* @argv: monty file location
+* Return: 0 on success
+*/
+int main(int argc, char *argv[])
 {
-	FILE *file;
+    char *content;
+    FILE *file;
+	stack_t *stack = NULL;
+    unsigned int counter = 0;
 
-	if (argc != 2)
-	{
-		print_usage_error();
-	}
+    if (argc != 2)
+    {
+        fprintf(stderr, "USAGE: monty file\n");
+        exit(EXIT_FAILURE);
+    }
+    file = fopen(argv[1], "r");
+    if (!file)
+    {
+        print_open_error(argv[1]);
+    }
 
-	file = fopen(argv[1], "r");
-	if (!file)
-	{
-		print_open_error(argv[1]);
-	}
-
-	/* TODO: Parse and execute the Monty bytecodes here */
-
-	fclose(file);
-	return (EXIT_SUCCESS);
+    content = malloc(1024);
+    if (!content)
+    {
+        fclose(file);
+        exit(EXIT_FAILURE);
+    }
+    
+    while (fgets(content, 1024, file) != NULL)
+    {
+        counter++;
+        execute(content, &stack, counter, file);
+    }
+    /* Add function to free the stack */
+    fclose(file);
+    return (0);
 }
 
