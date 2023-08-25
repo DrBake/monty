@@ -32,6 +32,7 @@ bus_t bus;
 /* Prototypes for the main functions */
 void execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
 void free_stack(stack_t **stack);
+int check_if_number(char *str);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
