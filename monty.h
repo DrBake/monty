@@ -23,5 +23,10 @@ typedef struct instruction_s
 void push(stack_t **stack, unsigned int line_number, char *argument);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
+void print_usage_error(void);
+void print_open_error(char *filename);
+void print_unknown_instruction_error(char *opcode, unsigned int line_number);
+void print_malloc_error(void);
+void free_stack(stack_t **stack);
 
 #endif
