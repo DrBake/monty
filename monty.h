@@ -6,24 +6,37 @@
 #include <string.h>
 #include <sys/types.h>
 
-/* Define the stack_t struct */
+/**
+ * struct stack_s - Struct representing the stack elements
+ * @n: Integer
+ * @prev: Points to the previous element of the stack
+ * @next: Points to the next element of the stack
+ */
 typedef struct stack_s
 {
-    int n;
-    struct stack_s *prev;
-    struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
-/* Define the instruction_t struct */
+/**
+ * struct instruction_s - Represent available instruction & correspond function
+ * @opcode: The opcode
+ * @f: Function to handle the opcode
+ */
 typedef struct instruction_s
 {
-    char *opcode;
-    void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-typedef struct bus_s 
+/**
+ * struct bus_s - Struct representing the bus used for specific operations
+ * @content: The content
+ */
+typedef struct bus_s
 {
-    char *content;
+	char *content;
 } bus_t;
 
 bus_t bus;

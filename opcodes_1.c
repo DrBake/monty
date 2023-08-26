@@ -8,7 +8,7 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
-	
+
 	if (bus.content == NULL || check_if_number(bus.content) == 0)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
@@ -29,7 +29,7 @@ void push(stack_t **stack, unsigned int line_number)
 	new_node->next = *stack;
 
 	if (*stack)
-		(*stack)->prev = new_node;	
+		(*stack)->prev = new_node;
 
 	*stack = new_node;
 }
