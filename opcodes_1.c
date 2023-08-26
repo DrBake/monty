@@ -75,8 +75,19 @@ void pint(stack_t **stack, unsigned int line_number)
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	(void)stack;
-(void)line_number;
+	stack_t *temp;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	temp = *stack;
+	*stack = (*stack)->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
+	free(temp);
 }
 
 /**
@@ -86,7 +97,15 @@ void pop(stack_t **stack, unsigned int line_number)
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	(void)stack;
-(void)line_number;
-}
+	int temp_value;
 
+	if (!(*stack) || !((*stack)->next)
+			{
+			fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+			exit(EXIT_FAILURE);
+			}
+
+	temp_value = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = temp_value;
+}
